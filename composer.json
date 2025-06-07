@@ -1,0 +1,18 @@
+{
+    "name": "victus/web_application",
+    "description": "Bookstore generator for test data",
+    "require": {
+        "fakerphp/faker": "v1.24.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Victus\\WebApplication\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Axadulla",
+            "email": "ahadullaa5@gmail.com"
+        }
+    ]
+}

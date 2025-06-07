@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookstore Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 p-4">
+
+
+<div class="flex flex-wrap gap-4 mb-4 items-center">
+    <select id="language" class="p-2 border rounded">
+        <option value="en_US">English (US)</option>
+        <option value="de_DE">German (DE)</option>
+        <option value="ja_JP">Japanese (JP)</option>
+    </select>
+
+    <input type="text" id="seed" placeholder="Seed" class="p-2 border rounded w-40">
+    <button id="randomSeed" class="p-2 bg-blue-500 text-white rounded">🎲</button>
+
+    <label>
+        Likes:
+        <input type="range" id="likes" min="0" max="10" step="0.1" class="ml-2">
+    </label>
+
+    <label>
+        Review:
+        <input type="number" id="reviews" min="0" max="10" step="0.1" value="4.7" class="p-2 border rounded w-20">
+    </label>
+
+</div>
+
+
+<table class="w-full bg-white shadow rounded overflow-hidden text-sm" id="bookTable">
+    <thead class="bg-gray-200">
+    <tr>
+        <th class="p-2">#</th>
+        <th class="p-2">ISBN</th>
+        <th class="p-2">Title</th>
+        <th class="p-2">Author(s)</th>
+        <th class="p-2">Publisher</th>
+    </tr>
+    </thead>
+    <tbody id="bookBody">
+
+    </tbody>
+</table>
+
+<div id="loading" class="text-center text-gray-500 mt-4 hidden">Loading...</div>
+
+<script src="app.js"></script>
+</body>
+</html>
