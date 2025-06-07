@@ -2,7 +2,7 @@
 FROM php:8.2-apache
 
 # Копируем весь проект в /var/www/html/web_application
-COPY ./ /var/www/html/web_application
+COPY . /var/www/html/web_application
 
 # Настраиваем Apache, чтобы корнем был public внутри web_application
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/web_application/public|' /etc/apache2/sites-available/000-default.conf
