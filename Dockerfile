@@ -1,17 +1,20 @@
-# Используем официальный PHP образ с Apache
+# Базовый образ PHP с Apache
 FROM php:8.2-apache
 
-# Устанавливаем необходимые расширения, если нужно (например, для Faker)
-RUN docker-php-ext-install pdo pdo_mysql
+# Копируем весь проект в /var/www/html/web_application
+COPY ./web_application /var/www/html/web_application
 
-# Копируем весь проект в директорию веб-сервера
-COPY . /var/www/html/
+# Настраиваем Apache, чтобы корнем был public внутри web_application
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/web_application/public|' /etc/apache2/sites-available/000-default.conf
 
-# Устанавливаем права, если надо
-RUN chown -R www-data:www-data /var/www/html/
+# Включаем модуль перезаписи URL, если нужно (часто требуется для PHP-приложений)
+RUN a2enmod rewrite
 
-# Порт по умолчанию для Apache 80
+# Устанавливаем права (чтобы Apache мог читать файлы)
+RUN chown -R www-data:www-data /var/www/html/web_application
+
+# Открываем порт 80 (Apache)
 EXPOSE 80
 
-# Запускаем Apache в фореграунд режиме
+# Запускаем Apache в фоновом режиме (фореграунд)
 CMD ["apache2-foreground"]
